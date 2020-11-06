@@ -8,10 +8,27 @@ theme = "m10c"
     identifier = "home"
     name = "Home"
     url = "/"
+    weight = -110
   [[menu.main]]
-    identifier = "tags"
-    name = "Tags"
-    url = "/tags/"
+    identifier = "aboutme"
+    name = "About Me"
+    url = "/aboutme"
+    weight = -100
+  [[menu.main]]
+    identifier = "publications"
+    name = "Publications"
+    url = "/publications"
+    weight = 90
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects"
+    weight = -80
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact"
+    weight = 100
 
 [params]
     author = "Carlos Zoido"

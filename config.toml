@@ -1,0 +1,31 @@
+baseURL = "https://czoido.github.io/"
+languageCode = "en-us"
+title = "Carlos Zoido"
+theme = "m10c"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+
+[params]
+    author = "Carlos Zoido"
+    description = "PhD. Industrial Engineering // Software developer // Co-founded The Big Banh"
+    menu_item_separator = " - "
+        [[params.social]]
+            name = "linkedin"
+            url = "https://www.linkedin.com/in/czoido/"
+        [[params.social]]
+            name = "github"
+            url = "https://github.com/czoido"
+        [[params.social]]
+            name = "twitter"
+            url = "https://twitter.com/czoido"
+        [[params.social]]
+            name = "youtube"
+            url = "https://www.youtube.com/user/mrgalleta76"

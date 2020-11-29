@@ -2,7 +2,6 @@ baseURL = "https://czoido.github.io/"
 languageCode = "en-us"
 title = "Carlos Zoido"
 theme = "m10c"
-
 [menu]
   [[menu.main]]
     identifier = "home"

@@ -9,7 +9,7 @@ draft: false
 Hi! I'm Carlos. A Software Engineer from Madrid. This blog is just an excuse to keep track of some
 things I do.
 
-Since I was a child, I have felt a non-ending curiosity for many different subjects. That thirst of
+I have always felt a non-ending curiosity for many different subjects. That thirst of
 knowledge is what has mainly driven my personal, academic and professional career and was the cause
 that made me study Industrial Engineering to learn what made things work. After finishing my studies,
 I started working as a C++ Software Developer in a Research Centre at the Polytechnic University of
@@ -28,5 +28,9 @@ working processes to create value for our customers. These efforts were successf
 
 ### Back to the future
 
-After more than three years of adventure, I decided to take a new path and joined the amazing Conan C/C++
-Package manager team in JFrog where I'm happily working now.
+After more than three years of adventure, I decided to take a new path and joined the amazing Conan
+C/C++ Package manager team in JFrog where I'm happily working now. Conan fits a vital need in the C++
+community, the need of managing dependencies easily. There is a [central
+repository](https://github.com/conan-io/conan-center-index) where the community is making a great
+effort in adding new libraries each day. To this date (January 2021) [this is how the hierarchy of
+libraries looks in Conan Center](../c3i-graph.html).

@@ -1,0 +1,109 @@
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/three-spritetext"></script>
+    <script src="//unpkg.com/3d-force-graph"></script>
+</head>
+
+<body>
+    <div id="3d-graph"></div>
+    <div style="position: absolute; top: 5px; right: 5px;">
+        <button id="animationToggle" style="margin: 8px; height: 25px; width: 150px;">
+            Pause Animation
+        </button>
+        <select id="selectLib" style="margin: 8px; height: 25px; width: 150px;">
+            <option>Choose a library</option>
+        </select>
+    </div>
+    <script>
+        let node_center_name = "zlib"
+        let node_center = null;
+        let max_dist = 500;
+        let angle = 0;
+        let distance = 0;
+        let isRotationActive = true;
+        let dist_rate = 0.1;
+        const speed = 2.0 / 3000.0;
+        let anim_speed = speed;
+        const Graph = ForceGraph3D()
+            (document.getElementById('3d-graph'))
+            .jsonUrl('c3i-graph.json')
+            .nodeLabel('id')
+            .enableNodeDrag(false)
+            .enableNavigationControls(false)
+            .showNavInfo(false)
+            .cameraPosition({ z: distance })
+            .nodeAutoColorBy('group')
+            .nodeThreeObject(node => {
+                const sprite = new SpriteText(node.id);
+                sprite.color = 'rgba(235,235,250,0.9)';
+                sprite.textHeight = 8;
+                sprite.material.depthWrite = false;
+                return sprite;
+            })
+            .linkDirectionalArrowLength(3.5)
+            .linkDirectionalArrowRelPos(1);
+            //.linkCurvature(0.25);
+        let isAnimationActive = true;
+        setInterval(() => {
+            if (isAnimationActive) {
+                if (!node_center) {
+                    let { nodes, links } = Graph.graphData();
+                    nodes.forEach(function (item, index) {
+                        if (item.name == node_center_name) {
+                            node_center = item;
+                            return;
+                        }
+                    })
+                    var select = document.getElementById("selectLib"); 
+                    if (select.options.length==1) {
+                            nodes.forEach(function (item, index) {
+                                var opt = item.name;
+                                var el = document.createElement("option");
+                                el.textContent = opt;
+                                el.value = opt;
+                                select.appendChild(el);
+                            })
+                            select.value = node_center_name;                 
+                    }
+                }
+                else {
+                        Graph.cameraPosition({
+                            x: node_center.x + distance * Math.sin(angle),
+                            y: node_center.y + distance * Math.cos(angle),
+                            z: node_center.z + distance,                            
+                        },
+                        {x:node_center.x, y:node_center.y, z:node_center.z});
+                    angle += Math.PI * anim_speed;
+                    dist_rate += Math.PI * 0.5 * anim_speed;
+                    distance = max_dist * Math.sin(dist_rate);
+                } 
+            }
+        }, 10);
+        document.getElementById('animationToggle').addEventListener('click', event => {
+            isAnimationActive = !isAnimationActive;
+            if (!isAnimationActive) {
+                anim_speed = 0.0;
+                Graph.enableNodeDrag(true)
+                    .enableNavigationControls(true);
+            }
+            else {
+                anim_speed = speed;
+                Graph.enableNodeDrag(false)
+                    .enableNavigationControls(false);
+            }
+            event.target.innerHTML = `${(isAnimationActive ? 'Pause' : 'Resume')} Animation`;
+        });  
+        document.getElementById('selectLib').addEventListener('change', event => {
+            if (event.target.value!="Choose a library") {
+                node_center_name = event.target.value;
+                node_center = null;
+            }
+        });  
+
+    </script>
+</body>
